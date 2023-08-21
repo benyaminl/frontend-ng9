@@ -1,0 +1,4 @@
+<div *ngFor="let item of data">
+    <app-task [task]="item.title ?? ''" [finished]="item.completed ?? false"></app-task>
+    <button [routerLink]="['/detail/', item.id]">Detail</button>
+</div>
