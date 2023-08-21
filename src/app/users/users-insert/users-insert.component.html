@@ -1,0 +1,31 @@
+<form (submit)="submit()" [formGroup]="UserInsertForm">
+    Name : <input type="text" formControlName="name">
+    <div *ngIf="name?.invalid && (name?.dirty || name?.touched)"
+        class="alert alert-danger">
+
+    <div *ngIf="name?.errors?.['required']">
+        Name is required.
+    </div>
+    <div *ngIf="name?.errors?.['minlength']">
+        Name must be at least 4 characters long.
+    </div>
+    </div>
+    <br>
+    Email : <input type="email" formControlName="email">
+    <div *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+        class="alert alert-danger">
+
+    <div *ngIf="email?.errors?.['required']">
+        Email is required.
+    </div>
+    <div *ngIf="email?.errors?.['email']">
+        Email field should be an e-mail!
+    </div>
+    <div *ngIf="email?.errors?.['minlength']">
+        Email must be at least 4 characters long.
+    </div>
+    </div>
+    <br>
+    Admin : <input type="checkbox" formControlName="admin">
+    <button type="submit" [disabled]="!UserInsertForm.valid">Kirim</button>
+</form>

@@ -1,2 +1,6 @@
-<app-task [task]="data.title ?? ''"></app-task>
+<div>
+    <span>{{ user?.name ?? '...' }}</span> <br>
+    <span>{{ user?.email ?? '...' }}</span>
+</div>
+<app-task [task]="data.title ?? ''" [finished]="data.completed ?? false"></app-task>
 <button routerLink="/">Back</button>
