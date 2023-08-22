@@ -1,25 +1,23 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { catchError, retry } from 'rxjs';
 import { Task } from 'src/model/task';
+import { Service } from './service';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
-export class TaskService {
-    constructor(private http: HttpClient) { }
+export class TaskService extends Service {    
+    constructor(private http: HttpClient) {
+        super();
+    }
 
     public GetTaskList()
     {
         return this.http.get<Task[]>("https://jsonplaceholder.typicode.com/todos")
         .pipe(
             retry(3),
-            catchError((err, caught) => {
-            console.log(err);
-            console.log(caught);
-
-            return caught;
-            })
+            catchError(this.catchError)
         );
     }
 
@@ -28,12 +26,7 @@ export class TaskService {
         return this.http.get<Task>("https://jsonplaceholder.typicode.com/todos/" + id.toString())
         .pipe(
             retry(3),
-            catchError((err, caught) => {
-            console.log(err);
-            console.log(caught);
-
-            return caught;
-            })
+            catchError(this.catchError)
         );
     }
 }

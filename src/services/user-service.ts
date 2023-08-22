@@ -1,48 +1,39 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { catchError, retry } from 'rxjs';
 import { User } from 'src/model/user';
+import { Service } from './service';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
-    constructor(private http: HttpClient) {}
+export class UserService extends Service {
 
-    public GetUserList()
-    {
-      return this.http.get<User[]>("https://jsonplaceholder.typicode.com/users")
-        .pipe(
-          retry(3),
-          catchError((err, caught) => {
-            console.log(err);
-            console.log(caught);
+  constructor(private http: HttpClient) {
+    super();
+  }
 
-            return caught;
-          })
-        );
-    }
+  public GetUserList()
+  {
+    return this.http.get<User[]>("https://jsonplaceholder.typicode.com/users")
+      .pipe(
+        retry(3),
+        catchError(this.catchError)
+      );
+  }
 
-    public GetUser(id: number)
-    {
-      return this.http.get<User>("https://jsonplaceholder.typicode.com/users/" + id.toString())
-        .pipe(
-          retry(3),
-          catchError((err, caught) => {
-            console.log(err);
-            console.log(caught);
+  public GetUser(id: number)
+  {
+    return this.http.get<User>("https://jsonplaceholder.typicode.com/users/" + id.toString())
+      .pipe(
+        retry(3),
+        catchError(this.catchError)
+      );
+  }
 
-            return caught;
-          })
-        );
-    }
-
-    public AddUser(d: User)
-    {
-      return this.http.post("https://jsonplaceholder.typicode.com/users/", d)
-        .pipe(catchError((err, caught) => {
-          console.log(err);
-          return caught;
-        }));
-    }
+  public AddUser(d: User)
+  {
+    return this.http.post("https://jsonplaceholder.typicode.com/users/", d)
+      .pipe(catchError(this.catchError));
+  }
 }
