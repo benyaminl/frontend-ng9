@@ -28,7 +28,7 @@ export class DetailTaskListComponent {
 
   public fetchDataTask()
   {
-    if (this.id == 0) return;
+    if (this.id <= 0) return;
 
     return this.taskService.GetTask(this.id)
       .subscribe(r => {
