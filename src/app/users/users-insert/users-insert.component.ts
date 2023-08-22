@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { catchError } from 'rxjs';
+import { User } from 'src/model/user';
+import { UserService } from 'src/services/user-service';
 
 interface UserInsertFormModel 
 {
@@ -22,20 +22,24 @@ export class UsersInsertComponent {
     admin: new FormControl(false, {nonNullable: true})
   });
 
-  constructor(private http: HttpClient)
+  constructor(private userService: UserService)
   {}
 
   public submit()
   {
     console.log("Masuk");
     console.log(this.UserInsertForm.value.admin);
+    
+    let user = new User(
+      0,
+      this.UserInsertForm.value.name ?? "",
+      this.UserInsertForm.value.name?.replaceAll(" ", "") ?? "",
+      this.UserInsertForm.value.email ?? "",
+      "123",
+      "aaa"
+    );
 
-    this.http.post("https://jsonplaceholder.typicode.com/users/", 
-      this.UserInsertForm.value)
-    .pipe(catchError((err, caught) => {
-      console.log(err);
-      return caught
-    }))
+    this.userService.AddUser(user)
     .subscribe(res => {
       alert("Insert Success!");
     });

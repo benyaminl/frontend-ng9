@@ -3,6 +3,8 @@ import { Component, Input } from '@angular/core';
 import { catchError, retry } from 'rxjs';
 import { Task } from 'src/model/task';
 import { User } from 'src/model/user';
+import { TaskService } from 'src/services/task-service';
+import { UserService } from 'src/services/user-service';
 
 @Component({
   selector: 'app-detail-task-list',
@@ -15,26 +17,24 @@ export class DetailTaskListComponent {
   public data: Task = new Task;
   public user?: User;
 
-  constructor(private http: HttpClient) {}
+  constructor(private taskService: TaskService, private userService: UserService) {}
 
   ngOnInit()
   {
-    this.fetchDataTask();
+    var taskDetail = this.fetchDataTask();
+    
+    taskDetail?.add(() => {
+      this.fetchDataUser();
+    });
   }
 
   public fetchDataTask()
   {
     if (this.id == 0) return;
 
-    this.http
-      .get<Task>("https://jsonplaceholder.typicode.com/todos/"+this.id.toString())
-      .pipe(retry(3), catchError((err, caught) => 
-      {
-        return caught;
-      }))
+    return this.taskService.GetTask(this.id)
       .subscribe(r => {
         this.data = r;
-        this.fetchDataUser();
       });
   }
 
@@ -42,12 +42,7 @@ export class DetailTaskListComponent {
   {
     if(this.data.userId == undefined) return;
 
-    this.http
-      .get<User>("https://jsonplaceholder.typicode.com/users/" + this.data.userId?.toString() ?? 0)
-      .pipe(retry(3), catchError((err, caught) => 
-      {
-        return caught;
-      }))
+    this.userService.GetUser(this.data.userId ?? 0)
       .subscribe(r => {
         this.user = r;
       });

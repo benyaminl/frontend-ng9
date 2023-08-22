@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { catchError, retry } from 'rxjs';
 import { Task } from 'src/model/task';
+import { TaskService } from 'src/services/task-service';
 
 @Component({
   selector: 'app-task-list',
@@ -11,21 +12,12 @@ import { Task } from 'src/model/task';
 export class TaskListComponent {
   public data: Task[] = new Array();
 
-  public constructor(private http: HttpClient)
+  public constructor(private taskService: TaskService)
   {}
 
   public fetchData()
   {
-    this.http.get<Task[]>("https://jsonplaceholder.typicode.com/todos")
-      .pipe(
-        retry(3),
-        catchError((err, caught) => {
-          console.log(err);
-          console.log(caught);
-
-          return caught;
-        })
-      )
+    this.taskService.GetTaskList()
       .subscribe(response => {
         this.data = response
       }); 
