@@ -1,6 +1,4 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
-import { catchError, retry } from 'rxjs';
 import { Task } from 'src/model/task';
 import { User } from 'src/model/user';
 import { TaskService } from 'src/services/task-service';
