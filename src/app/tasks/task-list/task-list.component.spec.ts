@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TaskListComponent } from './task-list.component';
+import { HttpClientModule } from '@angular/common/http';
+import { TaskComponent } from '../task/task.component';
 
 describe('TaskListComponent', () => {
   let component: TaskListComponent;
@@ -8,7 +10,8 @@ describe('TaskListComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TaskListComponent]
+      imports: [HttpClientModule],
+      declarations: [TaskListComponent, TaskComponent]
     });
     fixture = TestBed.createComponent(TaskListComponent);
     component = fixture.componentInstance;

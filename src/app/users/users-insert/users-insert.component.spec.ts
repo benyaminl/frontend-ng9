@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UsersInsertComponent } from './users-insert.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('UsersInsertComponent', () => {
   let component: UsersInsertComponent;
@@ -8,6 +10,7 @@ describe('UsersInsertComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientModule, ReactiveFormsModule],
       declarations: [UsersInsertComponent]
     });
     fixture = TestBed.createComponent(UsersInsertComponent);
