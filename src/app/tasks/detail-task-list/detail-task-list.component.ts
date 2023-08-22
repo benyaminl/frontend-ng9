@@ -40,7 +40,7 @@ export class DetailTaskListComponent {
   {
     if(this.data.userId == undefined) return;
 
-    this.userService.GetUser(this.data.userId ?? 0)
+    this.userService.GetUser(this.data.userId)
       .subscribe(r => {
         this.user = r;
       });

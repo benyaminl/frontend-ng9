@@ -57,4 +57,11 @@ describe('DetailTaskListComponent', () => {
       done();
     }, 2500);
   });
+
+  it('should not able to call fetchUser when userId blank', (done: DoneFn) =>
+  {
+    component.fetchDataUser();
+    expect(component.user).toBeUndefined();
+    done();
+  });
 });

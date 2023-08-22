@@ -18,4 +18,9 @@ describe('LikeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should increase like when like button pressed', () => {
+    component.addLike();
+    expect(component.totalLike).toBeGreaterThan(0);
+  });
 });
