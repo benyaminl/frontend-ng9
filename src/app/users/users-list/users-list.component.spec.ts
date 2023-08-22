@@ -12,7 +12,8 @@ describe('UsersListComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
-      declarations: [UsersListComponent]
+      declarations: [UsersListComponent],
+      providers: [UserService],
     });
     fixture = TestBed.createComponent(UsersListComponent);
     component = fixture.componentInstance;

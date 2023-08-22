@@ -4,6 +4,8 @@ import { DetailTaskListComponent } from './detail-task-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TaskComponent } from '../task/task.component';
 import { Task } from 'src/model/task';
+import { TaskService } from 'src/services/task-service';
+import { UserService } from 'src/services/user-service';
 
 describe('DetailTaskListComponent', () => {
   let component: DetailTaskListComponent;
@@ -13,6 +15,7 @@ describe('DetailTaskListComponent', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
       declarations: [DetailTaskListComponent, TaskComponent],
+      providers: [TaskService, UserService],
       // 
       teardown: {destroyAfterEach: false}
     });
@@ -49,7 +52,7 @@ describe('DetailTaskListComponent', () => {
 
     setTimeout(() => {
       expect(component.data.id).toBeUndefined();
-      console.log(component.user)
+      // console.log(component.user)
       expect(component.user).toBeUndefined();
       done();
     }, 2500);

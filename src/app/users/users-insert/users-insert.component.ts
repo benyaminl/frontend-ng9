@@ -27,8 +27,8 @@ export class UsersInsertComponent {
 
   public submit()
   {
-    console.log("Masuk");
-    console.log(this.UserInsertForm.value.admin);
+    // console.log("Masuk");
+    // console.log(this.UserInsertForm.value.admin);
     
     let user = new User(
       0,
