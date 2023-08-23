@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AnimationComponent } from './animation.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('AnimationComponent', () => {
   let component: AnimationComponent;
@@ -8,7 +9,8 @@ describe('AnimationComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AnimationComponent]
+      declarations: [AnimationComponent],
+      imports: [BrowserAnimationsModule]
     });
     fixture = TestBed.createComponent(AnimationComponent);
     component = fixture.componentInstance;
@@ -17,5 +19,12 @@ describe('AnimationComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should change/animate when button presses', () => {
+    component.toggleOpenClose();
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector("div")?.style.backgroundColor).not.toEqual('red');
   });
 });
