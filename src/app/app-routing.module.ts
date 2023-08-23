@@ -12,6 +12,10 @@ const routes: Routes = [
   },
   { path: 'users', loadChildren: () => import("./users/users.module")
     .then((m) => m.UsersModule)
+  },
+  {
+    path: 'animation', loadChildren: () => import("./animation/animation.module")
+    .then((m) => m.AnimationModule)
   }
 ];
 

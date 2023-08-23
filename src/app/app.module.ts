@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,13 +15,11 @@ import { TaskService } from 'src/services/task-service';
 @NgModule({
   declarations: [
     AppComponent,
-    LikeComponent,
-    // TaskComponent,
-    // TaskListComponent,
-    // DetailTaskListComponent
+    LikeComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule
   ],
