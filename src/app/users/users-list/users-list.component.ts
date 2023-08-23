@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { User } from 'src/model/user';
 import { UserService } from 'src/services/user-service';
 
@@ -10,7 +11,9 @@ import { UserService } from 'src/services/user-service';
 export class UsersListComponent {
   public data: User[] = new Array;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private titleService: Title) {
+    titleService.setTitle("List User")
+  } 
 
   public getData()
   {

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { User } from 'src/model/user';
 import { UserService } from 'src/services/user-service';
 
@@ -22,8 +23,10 @@ export class UsersInsertComponent {
     admin: new FormControl(false, {nonNullable: true})
   });
 
-  constructor(private userService: UserService)
-  {}
+  constructor(private userService: UserService, private titleService: Title)
+  {
+    titleService.setTitle("Insert User")
+  }
 
   public submit()
   {

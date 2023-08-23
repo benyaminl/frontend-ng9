@@ -7,6 +7,7 @@ import {
   transition,
   // ...
 } from '@angular/animations';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-animation',
@@ -36,6 +37,11 @@ import {
 })
 export class AnimationComponent {
   public isOpen: boolean = false;
+
+  constructor(private titleServce: Title)
+  {
+    titleServce.setTitle("Animation Example");
+  }
 
   public toggleOpenClose()
   {

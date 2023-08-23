@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Task } from 'src/model/task';
 import { User } from 'src/model/user';
 import { TaskService } from 'src/services/task-service';
@@ -15,7 +16,9 @@ export class DetailTaskListComponent {
   public data: Task = new Task;
   public user?: User;
 
-  constructor(private taskService: TaskService, private userService: UserService) {}
+  constructor(private taskService: TaskService, private userService: UserService, private titleService: Title) {
+    titleService.setTitle("Detail Task " + this.id.toString());
+  }
 
   ngOnInit()
   {
