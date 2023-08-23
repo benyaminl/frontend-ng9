@@ -1,0 +1,13 @@
+<app-users-detail [user]="d"></app-users-detail>
+<table>
+
+    <tr>
+        <td class="d-right">Phone</td>
+        <td>{{ d?.phone }}</td>
+    </tr>
+    <tr>
+        <td class="d-right">Website</td>
+        <td>{{ d?.website }}</td>
+    </tr>
+</table>
+<button type="button" [routerLink]="'/users'">Back</button>

@@ -5,6 +5,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { UsersDetailComponent } from './users-detail/users-detail.component';
 import { UsersInsertComponent } from './users-insert/users-insert.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UsersDetailPageComponent } from './users-detail-page/users-detail-page.component';
 
 
 
@@ -12,7 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     UsersListComponent,
     UsersDetailComponent,
-    UsersInsertComponent
+    UsersInsertComponent,
+    UsersDetailPageComponent
   ],
   imports: [
     CommonModule,
