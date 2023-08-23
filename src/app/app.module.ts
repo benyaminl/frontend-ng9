@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,7 +23,7 @@ import { TaskService } from 'src/services/task-service';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [UserService, TaskService],
+  providers: [UserService, TaskService, provideClientHydration()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

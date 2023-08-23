@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/frontend-ng",
+            "outputPath": "dist/frontend-ng/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -98,6 +98,61 @@
             "scripts": [],
             "codeCoverage": true
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/frontend-ng/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "inlineStyleLanguage": "scss"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "frontend-ng:build:development",
+              "serverTarget": "frontend-ng:server:development"
+            },
+            "production": {
+              "browserTarget": "frontend-ng:build:production",
+              "serverTarget": "frontend-ng:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "frontend-ng:build:production",
+              "serverTarget": "frontend-ng:server:production"
+            },
+            "development": {
+              "browserTarget": "frontend-ng:build:development",
+              "serverTarget": "frontend-ng:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
