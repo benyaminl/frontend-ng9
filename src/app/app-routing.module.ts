@@ -16,6 +16,10 @@ const routes: Routes = [
   {
     path: 'animation', loadChildren: () => import("./animation/animation.module")
     .then((m) => m.AnimationModule)
+  },
+  {
+    path:'login', loadChildren: () => import("./auth/auth.module")
+    .then((m) => m.AuthModule)
   }
 ];
 

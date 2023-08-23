@@ -1,0 +1,12 @@
+<form [formGroup]="formLogin" (submit)="Submit()">
+    <div style="background-color: pink; padding: 20px;" *ngIf="msg != ''">{{ msg }}</div>
+    <label>Username</label> <br>
+    <input type="text" formControlName="username"> <br>
+    <label>Password</label> <br>
+    <input type="password" formControlName="password"> <br>
+    <button type="submit" [disabled]="submitDisabled">Login</button>
+    <pre>
+        Just for fun, this use admin and admin, to test the authGuard
+        This is new for me, so please be kind (haha... Well Guard concept is everywhere)
+    </pre>
+</form>
