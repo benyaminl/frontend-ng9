@@ -1,0 +1,33 @@
+# Use a Node.js base image
+FROM node:20 as build
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the package.json and package-lock.json files
+COPY package*.json ./
+
+# Install the dependencies
+RUN npm install
+
+# Copy the rest of the app files
+COPY . .
+
+# Then Build the Server and browser bundle
+RUN npm run build:ssr --omit=dev
+
+# Use a Nginx base image
+FROM node:20-alpine
+
+# Copy the built app files to the Nginx web root
+COPY --from=build /app /app
+
+# Set the App to run on port 80
+ENV PORT=80
+# Expose port 80
+EXPOSE 80
+
+# Workdir need to be set? and dist need to be on same folder sadly
+WORKDIR /app
+# Set the node to run the main.js
+ENTRYPOINT ["node", "dist/frontend-ng/server/main.js"]
