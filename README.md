@@ -12,3 +12,17 @@ For the server side rendering with express, refer to `https://angular.io/guide/u
 ## Production server SSR
 
 For production, we can run `node dist/server/main.js`, and user docker for deployment, as js app always exit when facing error. 
+
+## Building for production 
+
+### SSR / Server Side rendering
+
+Just run `podman build -t frontend-ng:server -f Dockerfile.Server`
+
+You can replace `podman` with `docker` command. I don't like docker as it's slow in local dev, podman is faster, leaner, and much more secure (even on local, especially with RHEL)
+
+### Normal Lazy Load - Client Side 
+
+Just run `podman build -t frontend-ng .` or `podman build -t frontend-ng -f Dockerfile`
+
+You can replace `podman` with `docker` command. I don't like docker as it's slow in local dev, podman is faster, leaner, and much more secure (even on local, especially with RHEL)
