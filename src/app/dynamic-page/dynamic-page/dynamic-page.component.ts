@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { TaskComponent } from 'src/app/tasks/task/task.component';
 import { TaskDirective } from 'src/directives/task.directive';
 
@@ -9,6 +9,8 @@ import { TaskDirective } from 'src/directives/task.directive';
 })
 export class DynamicPageComponent implements OnInit {
   @Input() tasks: TaskComponent[] = [];
+
+  @ViewChild('inputText') input!: ElementRef;
 
   @ViewChild(TaskDirective, {static: true}) taskContent!: TaskDirective;
 
@@ -31,5 +33,12 @@ export class DynamicPageComponent implements OnInit {
     task.taskName = "abc";
     task.finished = true;
     console.log(inst.instance.taskName);
+  }
+
+  public btnAlert()
+  {
+    let input = this.input.nativeElement as HTMLInputElement;
+
+    alert(input.value);
   }
 }

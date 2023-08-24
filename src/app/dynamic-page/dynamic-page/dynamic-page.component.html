@@ -1,3 +1,12 @@
 <p>dynamic-page works!</p>
 
 <ng-template task></ng-template>
+
+<h4>This is example of ElementRef</h4>
+<blockquote>Be ware that this will cause xss, probably
+    Permitting direct access to the DOM can make your application more vulnerable to XSS attacks. Carefully review any use of ElementRef in your code. 
+    https://angular.io/api/core/ElementRef
+    https://angular.io/guide/security
+</blockquote>
+
+<input type="text" #inputText> <button (click)="btnAlert()">Catch? Alert?</button>
