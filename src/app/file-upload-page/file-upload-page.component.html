@@ -1,7 +1,19 @@
+
 <form method="post" [formGroup]="fileUploadForm" (submit)="Submit()">
-    <input type="file" name="coba" formControlName="files" multiple (change)="OnFileChange($event)" (cancel)="OnFileChange($event)">
-    <div *ngIf="files?.errors != null && files?.dirty">
-        {{ files?.errors?.['fileRequiredValidator']?.message ?? '' }}
+    <h4>Single File Upload</h4>
+    <input type="file" name="files[]" multiple formControlName="individualFile" (change)="OnFileChangeIndividual($event)" (cancel)="OnFileChangeIndividual($event)">
+    <div *ngIf="fileUploadForm.controls['individualFile']?.errors != null && fileUploadForm.controls['individualFile']?.dirty">
+        {{ fileUploadForm.controls['individualFile'].errors?.['fileRequiredValidator']?.message ?? '' }}
     </div>
+    <h4>Multiple File Upload</h4>
+    <button type="button" (click)="AddFileUploadField()">Add File Upload</button> <br>
+    <ng-container *ngFor="let i of filesArray; ; let ix=index">
+        <div [formGroup]="i">
+            <input type="file" name="files[]" multiple formGroupName="file" (change)="OnFileChange($event,ix)" (cancel)="OnFileChange($event,ix)">
+            <div *ngIf="i.controls['file']?.errors != null && i.controls['file']?.dirty">
+                {{ i.controls['file'].errors?.['fileRequiredValidator']?.message ?? '' }}
+            </div>
+        </div>
+    </ng-container>
     <button type="submit">Kirim</button>
 </form>
