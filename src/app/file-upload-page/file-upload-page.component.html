@@ -1,0 +1,7 @@
+<form method="post" [formGroup]="fileUploadForm" (submit)="Submit()">
+    <input type="file" name="coba" formControlName="files" multiple (change)="OnFileChange($event)" (cancel)="OnFileChange($event)">
+    <div *ngIf="files?.errors != null && files?.dirty">
+        {{ files?.errors?.['fileRequiredValidator']?.message ?? '' }}
+    </div>
+    <button type="submit">Kirim</button>
+</form>

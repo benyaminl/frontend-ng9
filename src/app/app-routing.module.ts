@@ -20,6 +20,10 @@ const routes: Routes = [
   {
     path:'login', loadChildren: () => import("./auth/auth.module")
     .then((m) => m.AuthModule)
+  },
+  {
+    path:'upload', loadChildren: () => import('./file-upload-page/file-upload-page.module')
+    .then((m) => m.FileUploadPageModule)
   }
 ];
 
