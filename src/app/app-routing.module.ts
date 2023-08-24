@@ -24,6 +24,10 @@ const routes: Routes = [
   {
     path:'upload', loadChildren: () => import('./file-upload-page/file-upload-page.module')
     .then((m) => m.FileUploadPageModule)
+  },
+  {
+    path:'dynamic', loadChildren: () => import('./dynamic-page/dynamic-page.module')
+    .then((m) => m.DynamicPageModule)
   }
 ];
 
