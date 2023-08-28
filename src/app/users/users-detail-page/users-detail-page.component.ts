@@ -19,7 +19,7 @@ export class UsersDetailPageComponent {
 
     this.userService.GetUser(this.id)
       .subscribe(d => {
-        this.d = d;
+        this.d = d[0];
       });
   }
 

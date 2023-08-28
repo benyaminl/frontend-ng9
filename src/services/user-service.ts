@@ -1,34 +1,32 @@
-import { catchError, retry } from 'rxjs';
+import { Observable, catchError, retry } from 'rxjs';
 import { User } from 'src/model/user';
 import { Service } from './service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Firestore, collection, collectionData, query, where } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService extends Service {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private firebase: Firestore) {
     super();
   }
 
   public GetUserList()
   {
-    return this.http.get<User[]>("https://jsonplaceholder.typicode.com/users")
-      .pipe(
-        retry(3),
-        catchError(this.catchError)
-      );
+    const col = collection(this.firebase, 'users');
+    return (collectionData(col) as Observable<User[]>)
+      .pipe(catchError(this.catchError));
   }
 
   public GetUser(id: number)
   {
-    return this.http.get<User>("https://jsonplaceholder.typicode.com/users/" + id.toString())
-      .pipe(
-        retry(3),
-        catchError(this.catchError)
-      );
+    const col = query(collection(this.firebase, 'users'), where("id", "==", id.toString()));
+
+    return (collectionData(col))
+        .pipe(catchError(this.catchError));
   }
 
   public AddUser(d: User)

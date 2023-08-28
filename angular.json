@@ -153,6 +153,15 @@
             }
           },
           "defaultConfiguration": "production"
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2,
+            "browserTarget": "frontend-ng:build:production",
+            "serverTarget": "frontend-ng:server:production",
+            "prerenderTarget": "frontend-ng:prerender:production"
+          }
         }
       }
     }

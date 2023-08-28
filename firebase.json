@@ -1,0 +1,11 @@
+{
+  "hosting": [
+    {
+      "target": "frontend-ng",
+      "source": ".",
+      "frameworksBackend": {
+        "region": "asia-east1"
+      }
+    }
+  ]
+}

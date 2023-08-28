@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "angular-benlimanto-salt": {
+      "hosting": {
+        "frontend-ng": [
+          "angular-benlimanto-salt"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "angular-benlimanto-salt"
+  }
+}

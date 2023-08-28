@@ -13,6 +13,10 @@ import { UserService } from 'src/services/user-service';
 import { TaskService } from 'src/services/task-service';
 import { AlertService } from 'src/services/alert.service';
 import { AlertComponent } from 'src/shared/components/alert-component/alert-component.component';
+// Firebase
+import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { firebaseConfig } from 'src/env/env.dev';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,10 @@ import { AlertComponent } from 'src/shared/components/alert-component/alert-comp
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    // Firebase
+    provideFirebaseApp(() => initializeApp(firebaseConfig)),
+    provideFirestore(() => getFirestore()),
   ],
   providers: [UserService, TaskService, AlertService, provideClientHydration()],
   bootstrap: [AppComponent]
