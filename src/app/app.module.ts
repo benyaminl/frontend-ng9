@@ -11,11 +11,14 @@ import { HttpClientModule } from '@angular/common/http';
 // import { DetailTaskListComponent } from './tasks/detail-task-list/detail-task-list.component';
 import { UserService } from 'src/services/user-service';
 import { TaskService } from 'src/services/task-service';
+import { AlertService } from 'src/services/alert.service';
+import { AlertComponent } from 'src/shared/components/alert-component/alert-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LikeComponent
+    LikeComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,7 @@ import { TaskService } from 'src/services/task-service';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [UserService, TaskService, provideClientHydration()],
+  providers: [UserService, TaskService, AlertService, provideClientHydration()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

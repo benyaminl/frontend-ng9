@@ -1,0 +1,7 @@
+<!-- Using Bootstrap Alert Style? -->
+<div>
+  <ng-container *ngFor="let a of alertList; let i = index">
+    {{ a.type }} - {{ a.title }} - {{ a.message }}
+    <button (click)="BtnDismiss(i)">X</button>
+  </ng-container>
+</div>
