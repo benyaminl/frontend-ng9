@@ -6,6 +6,7 @@ import { UsersDetailComponent } from './users-detail/users-detail.component';
 import { UsersInsertComponent } from './users-insert/users-insert.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UsersDetailPageComponent } from './users-detail-page/users-detail-page.component';
+import { UsersPageComponent } from './users-page/users-page.component';
 
 
 
@@ -14,7 +15,8 @@ import { UsersDetailPageComponent } from './users-detail-page/users-detail-page.
     UsersListComponent,
     UsersDetailComponent,
     UsersInsertComponent,
-    UsersDetailPageComponent
+    UsersDetailPageComponent,
+    UsersPageComponent
   ],
   imports: [
     CommonModule,

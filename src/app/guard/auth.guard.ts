@@ -12,7 +12,7 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   console.log(!authService.IsLoggedIn());
   console.log(route);
-  if (state.url.toString() == "/users/add" && !authService.IsLoggedIn()) 
+  if (!authService.IsLoggedIn()) 
   {
     console.log("User must login!");
     return router.parseUrl("/login?msg=1&redirectUrl="+state.url);
