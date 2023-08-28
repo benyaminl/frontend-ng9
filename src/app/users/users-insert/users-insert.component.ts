@@ -34,7 +34,7 @@ export class UsersInsertComponent {
     // console.log(this.UserInsertForm.value.admin);
     
     let user = new User(
-      0,
+      "",
       this.UserInsertForm.value.name ?? "",
       this.UserInsertForm.value.name?.replaceAll(" ", "") ?? "",
       this.UserInsertForm.value.email ?? "",
