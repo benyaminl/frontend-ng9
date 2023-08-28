@@ -1,7 +1,10 @@
 <!-- Using Bootstrap Alert Style? -->
 <div>
   <ng-container *ngFor="let a of alertList; let i = index">
-    {{ a.type }} - {{ a.title }} - {{ a.message }}
-    <button (click)="BtnDismiss(i)">X</button>
+    <div class="alert alert-{{ a.type }} alert-dismissible fade show" role="alert">
+      <ng-container *ngIf="a.title != ''">{{ a.title }}</ng-container>
+      <div [innerHTML]="a.message"></div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="BtnDismiss(i)" aria-label="Close"></button>
+    </div>
   </ng-container>
 </div>

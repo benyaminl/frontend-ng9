@@ -19,7 +19,27 @@ export class AlertService {
 
   public info(message: string, title: string = "")
   {
-    this.alertList.push({title: title, message: message, type: "info"});
+    this.alert(message, title, "info");
+  }
+
+  public warning(message: string, title: string = "")
+  {
+    this.alert(message, title, "warning");
+  }
+
+  public error(message: string, title: string = "")
+  {
+    this.alert(message, title, "error");
+  }
+
+  public success(message: string, title: string = "")
+  {
+    this.alert(message, title, "success");
+  }
+
+  protected alert(message: string, title: string = "", type: string = "")
+  {
+    this.alertList.push({title: title, message: message, type: type});
     this.onNewAlert.emit();
   }
 
