@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AlertService } from 'src/services/alert.service';
 
 @Component({
   selector: 'app-like',
@@ -8,8 +9,11 @@ import { Component } from '@angular/core';
 export class LikeComponent {
   public totalLike: number = 0;
 
+  constructor(private alertService: AlertService) {}
+
   public addLike()
   {
     this.totalLike++;
+    this.alertService.info("Like added +1 = "+this.totalLike.toString()+" Alert");
   }  
 }
